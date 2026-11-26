@@ -29,9 +29,11 @@ ENTRY = (
 )
 
 # Gate: /output/entry.txt must be UTF-8 text of 1 to 180 characters,
-# not only white space. Refuse to write anything that would fail it.
+# not only white space, and a single line — the bounty is a one-line
+# placard. Refuse to write anything that would fail it.
 assert 1 <= len(ENTRY.strip()) <= 180, "entry must be 1-180 characters"
 assert ENTRY.strip(), "entry must not be only white space"
+assert "\n" not in ENTRY.strip(), "entry must be a single line"
 
 
 def main() -> None:
